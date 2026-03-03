@@ -1,5 +1,9 @@
 # 🚀 AI-Powered Task Scheduler API
 
+![.NET](https://img.shields.io/badge/.NET-8-blue)
+![JWT](https://img.shields.io/badge/Auth-JWT-green)
+![MySQL](https://img.shields.io/badge/Database-MySQL-blue)
+
 A production-ready ASP.NET Core Web API built with secure authentication and role-based authorization.
 
 ---
