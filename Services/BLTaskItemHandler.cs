@@ -17,9 +17,9 @@ namespace TaskManagement.Services
             _dbContext = dbContext;
         }
 
-        public Response GetTaskData()
+        public Response GetTaskData(int userId)
         {
-            DataTable dt = _dbContext.GetTaskData();
+            DataTable dt = _dbContext.GetTaskData(userId);
 
             if (dt.Rows.Count > 0)
                 response.Data = dt;
@@ -36,7 +36,6 @@ namespace TaskManagement.Services
         {
             _objTask = objTaskItem;
             _objTask.CreatedDate = DateTime.Now;
-            _objTask.UserId = _userId;
 
             response = _dbContext.Save(_objTask);
             response.Message = "Record Added Successfully";
@@ -46,9 +45,16 @@ namespace TaskManagement.Services
 
         public Response UpdateTaskItem(TaskItems objTaskItem)
         {
-            objTaskItem.UserId = _userId;
             response = _dbContext.UpdateTaskItem(objTaskItem);
             response.Message = "Record Updated Successfully";
+
+            return response;
+        }
+
+        public Response AssignTasks(TaskAssign objTaskAssign)
+        {
+            response = _dbContext.AssignTasks(objTaskAssign);
+            response.Message = "Tasks Assigned Successfully";
 
             return response;
         }

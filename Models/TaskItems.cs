@@ -41,6 +41,12 @@ namespace TaskManagement.Models
         /// <summary>
         /// LoggedIn User ID
         /// </summary>
-        public int UserId { get; set; }
+        public int UserId { get; set; } = 0;
+    }
+
+    public class TaskAssign
+    {
+        public List<int> taskIds { get; set; }
+        public int userId { get; set; }
     }
 }

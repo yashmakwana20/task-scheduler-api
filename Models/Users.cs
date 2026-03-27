@@ -5,7 +5,7 @@ namespace TaskManagement.Models
     /// <summary>
     /// Model Of User
     /// </summary>
-    public class User
+    public class Users
     {
         /// <summary>
         /// Primary Key

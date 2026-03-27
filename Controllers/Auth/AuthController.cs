@@ -26,7 +26,7 @@ namespace TaskManagement.Controllers.Auth
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-            var user = new User
+            var user = new Users
             {
                 Name = dto.Name,
                 Email = dto.Email,
@@ -49,7 +49,7 @@ namespace TaskManagement.Controllers.Auth
             if (user == null ||
                 !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
             {
-                return Unauthorized("Invalid credentials");
+                return Ok(new { IsError = true, Message = "Invalid credentials" });
             }
 
             var token = _jwt.GenerateToken(user);

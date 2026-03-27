@@ -23,7 +23,7 @@ namespace TaskManagement.Models
         /// <summary>
         /// User Table Object
         /// </summary>
-        public User User { get; set; }
+        public Users User { get; set; }
 
         /// <summary>
         /// Token Expiry Date

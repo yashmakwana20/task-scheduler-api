@@ -20,14 +20,17 @@ namespace TaskManagement.Repositories
             _dbFactory = new OrmLiteConnectionFactory(_config.GetConnectionString("DefaultConnection"), MySqlDialect.Provider);
         }
 
-        public DataTable GetTaskData()
+        public DataTable GetTaskData(int userId)
         {
             DataTable dt = new DataTable();
             List<TaskItems> lstTaksItem = new();
 
             using (var db = _dbFactory.Open())
             {
-                lstTaksItem = db.Select<TaskItems>();
+                if (userId == 0)
+                    lstTaksItem = db.Select<TaskItems>();
+                else
+                    lstTaksItem = db.Select<TaskItems>(item => item.UserId == userId);
             }
 
             return lstTaksItem.ToDataTable();
@@ -53,6 +56,16 @@ namespace TaskManagement.Repositories
             {
                 db.Update(objTaskItem);
                 response.masterId = objTaskItem.Id;
+            }
+
+            return response;
+        }
+
+        public Response AssignTasks(TaskAssign objTaskAssign)
+        {
+            using (var db = _dbFactory.Open())
+            {
+                db.UpdateOnlyFields(new TaskItems { UserId = objTaskAssign.userId }, onlyFields: TI => TI.UserId, where: TI => Sql.In(TI.Id, objTaskAssign.taskIds));
             }
 
             return response;

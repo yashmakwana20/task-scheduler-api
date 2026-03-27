@@ -16,7 +16,7 @@ namespace TaskManagement.Services.Common
 
         }
 
-        public string GenerateToken(User objUser)
+        public string GenerateToken(Users objUser)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
 
@@ -45,7 +45,7 @@ namespace TaskManagement.Services.Common
         /// </summary>
         /// <param name="objUser">User Object</param>
         /// <returns></returns>
-        public string GenerateRefreshToken(User objUser)
+        public string GenerateRefreshToken(Users objUser)
         {
             var randomNumber = new byte[32];
 

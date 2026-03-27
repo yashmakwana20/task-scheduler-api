@@ -171,3 +171,4 @@ E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\refint\TaskMana
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\TaskManagement.pdb
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\TaskManagement.genruntimeconfig.cache
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\ref\TaskManagement.dll
+E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\TaskManagement.sourcelink.json

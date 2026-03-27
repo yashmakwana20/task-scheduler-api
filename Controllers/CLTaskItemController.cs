@@ -24,11 +24,11 @@ namespace TaskManagement.Controllers
                 _userId = Convert.ToInt32(identity.Claims.FirstOrDefault().Value);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,User")]
         [HttpGet("GetTaskData")]
-        public IActionResult GetTaskData()
+        public IActionResult GetTaskData(int userId = 0)
         {
-            return Ok(_objHandler.GetTaskData());
+            return Ok(_objHandler.GetTaskData(userId));
         }
 
         [HttpPost]
@@ -43,6 +43,13 @@ namespace TaskManagement.Controllers
         {
             _objHandler._userId = _userId;
             return Ok(_objHandler.UpdateTaskItem(objTaskITem));
+        }
+
+        [HttpPut("AssignTasks")]
+        public IActionResult AssignTasks(TaskAssign objTaskAssign)
+        {
+            _objHandler._userId = _userId;
+            return Ok(_objHandler.AssignTasks(objTaskAssign));
         }
 
         [HttpDelete]

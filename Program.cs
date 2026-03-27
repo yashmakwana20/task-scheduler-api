@@ -50,18 +50,12 @@ builder.Services.AddSwaggerGen(swagger =>
 });
 
 builder.Services.AddScoped<BLTaskItemHandler>();
+builder.Services.AddScoped<BLUserHandler>();
 builder.Services.AddScoped<DBTaskItemContext>();
+builder.Services.AddScoped<DBUserContext>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddControllers().AddNewtonsoftJson();
-
-//builder.Services.AddSingleton<OrmLiteConnectionFactory>(sp =>
-//{
-//    var config = sp.GetRequiredService<IConfiguration>();
-//    var connStr = config.GetConnectionString("DefaultConnection");
-
-//    return new OrmLiteConnectionFactory(connStr, MySqlDialect.Provider);
-//});
 
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", option =>
 {
@@ -81,10 +75,20 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", option =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact", policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 builder.Services.AddAuthorization();
 
 
 var app = builder.Build();
+
+app.UseCors("AllowReact");
 
 app.UseAuthentication();
 
@@ -98,8 +102,6 @@ app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 

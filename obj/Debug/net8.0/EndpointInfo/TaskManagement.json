@@ -154,6 +154,17 @@
         "tags": [
           "CLTaskItem"
         ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -243,6 +254,18 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CLUser/GetUserData": {
+      "get": {
+        "tags": [
+          "CLUser"
         ],
         "responses": {
           "200": {
