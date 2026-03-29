@@ -172,3 +172,7 @@ E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\TaskManagement.
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\TaskManagement.genruntimeconfig.cache
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\ref\TaskManagement.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\TaskManagement.sourcelink.json
+E:\Self Project\TaskManagement\TaskManagement\bin\Release\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+E:\Self Project\TaskManagement\TaskManagement\bin\Release\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+E:\Self Project\TaskManagement\TaskManagement\bin\Release\net8.0\Microsoft.Extensions.ObjectPool.dll
+E:\Self Project\TaskManagement\TaskManagement\bin\Release\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

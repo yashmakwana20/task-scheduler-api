@@ -113,6 +113,22 @@
   },
   {
     "ContainingType": "TaskManagement.Controllers.CLTaskItemController",
+    "Method": "AssignTasks",
+    "RelativePath": "api/CLTaskItem/AssignTasks",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "objTaskAssign",
+        "Type": "TaskManagement.Models.TaskAssign",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskManagement.Controllers.CLTaskItemController",
     "Method": "GetTaskData",
     "RelativePath": "api/CLTaskItem/GetTaskData",
     "HttpMethod": "GET",

@@ -21,8 +21,11 @@ E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Micr
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Configuration.Abstractions.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Diagnostics.Abstractions.dll
+E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Hosting.Abstractions.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Logging.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.ObjectPool.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Options.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.Extensions.Primitives.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Abstractions.dll
@@ -50,8 +53,10 @@ E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\Syst
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.IO.Pipelines.dll
+E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.Net.WebSockets.WebSocketProtocol.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.Security.Permissions.dll
+E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.Text.Encodings.Web.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\System.Windows.Extensions.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\ZstdSharp.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\comerr64.dll
@@ -59,5 +64,6 @@ E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\runt
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\k5sprt64.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\krb5_64.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\krbcc64.dll
+E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
 E:\Self Project\TaskManagement\TaskManagement\obj\Release\net8.0\PubTmp\Out\TaskManagement.deps.json

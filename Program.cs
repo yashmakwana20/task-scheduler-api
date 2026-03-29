@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -5,6 +6,7 @@ using ServiceStack.OrmLite;
 using System.Security.Claims;
 using System.Text;
 using TaskManagement.Data;
+using TaskManagement.Hubs;
 using TaskManagement.Repositories;
 using TaskManagement.Services;
 using TaskManagement.Services.Common;
@@ -69,9 +71,26 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", option =>
         ValidateIssuerSigningKey = true,
 
         RoleClaimType = ClaimTypes.Role,
+        NameClaimType = ClaimTypes.NameIdentifier,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+
+    option.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
+
+            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/taskHub"))
+            {
+                context.Token = accessToken;
+            }
+
+            return Task.CompletedTask;
+        }
     };
 });
 
@@ -79,12 +98,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
-        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins("http://localhost:5173", "https://localhost:5173").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
     });
 });
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -104,5 +124,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+app.MapHub<TaskNotificationHub>("/taskHub");
 
 app.Run();
