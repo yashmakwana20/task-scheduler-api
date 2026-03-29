@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using TaskManagement.Hubs;
 using TaskManagement.Models;
 using TaskManagement.Services;
@@ -26,11 +24,11 @@ namespace TaskManagement.Controllers
             _hubContext = hubContext;
 
             var identity = contextAccessor.HttpContext.User.Identity as ClaimsIdentity;
-            if (identity.IsAuthenticated)
+            var userIdClaim = identity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (!string.IsNullOrWhiteSpace(userIdClaim))
             {
-                var userIdClaim = identity.Claims.FirstOrDefault();
-                if (userIdClaim != null)
-                    _userId = Convert.ToInt32(userIdClaim.Value);
+                _userId = Convert.ToInt32(userIdClaim);
             }
 
         }
@@ -73,7 +71,7 @@ namespace TaskManagement.Controllers
             response = _objHandler.AssignTasks(objTaskAssign);
 
             if (!response.IsError)
-                await NotifyTaskAssigned(objTaskAssign.userId);
+                await NotifyTaskChanged("task-assigned", objTaskAssign.userId);
 
             return Ok(response);
         }
@@ -110,7 +108,7 @@ namespace TaskManagement.Controllers
 
             if (assignedUserId.HasValue && assignedUserId.Value > 0)
             {
-                await _hubContext.Clients.Groups($"user-{assignedUserId.Value}").SendAsync("TaskChanges", new
+                await _hubContext.Clients.Groups($"user-{assignedUserId.Value}").SendAsync("TaskChanged", new
                 {
                     eventType,
                     userId = assignedUserId,
