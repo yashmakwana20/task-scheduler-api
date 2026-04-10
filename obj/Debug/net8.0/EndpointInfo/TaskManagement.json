@@ -149,6 +149,65 @@
         }
       }
     },
+    "/api/CLNotification": {
+      "get": {
+        "tags": [
+          "CLNotification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CLNotification/unread-count": {
+      "get": {
+        "tags": [
+          "CLNotification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CLNotification/{id}/read": {
+      "put": {
+        "tags": [
+          "CLNotification"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CLNotification/read-all": {
+      "put": {
+        "tags": [
+          "CLNotification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/CLTaskItem/GetTaskData": {
       "get": {
         "tags": [

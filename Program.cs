@@ -53,6 +53,7 @@ builder.Services.AddSwaggerGen(swagger =>
 
 builder.Services.AddScoped<BLTaskItemHandler>();
 builder.Services.AddScoped<BLUserHandler>();
+builder.Services.AddScoped<BLNotificationHandler>();
 builder.Services.AddScoped<DBTaskItemContext>();
 builder.Services.AddScoped<DBUserContext>();
 builder.Services.AddHttpContextAccessor();

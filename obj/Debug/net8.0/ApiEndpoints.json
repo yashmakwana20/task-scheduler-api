@@ -64,6 +64,52 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TaskManagement.Controllers.CLNotificationController",
+    "Method": "GetMyNotifications",
+    "RelativePath": "api/CLNotification",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskManagement.Controllers.CLNotificationController",
+    "Method": "MarkAsRead",
+    "RelativePath": "api/CLNotification/{id}/read",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskManagement.Controllers.CLNotificationController",
+    "Method": "MarkAllAsRead",
+    "RelativePath": "api/CLNotification/read-all",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskManagement.Controllers.CLNotificationController",
+    "Method": "GetUnreadCount",
+    "RelativePath": "api/CLNotification/unread-count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TaskManagement.Controllers.CLTaskItemController",
     "Method": "SaveTaskItem",
     "RelativePath": "api/CLTaskItem",

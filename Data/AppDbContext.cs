@@ -12,5 +12,6 @@ namespace TaskManagement.Data
         public DbSet<Users> Users { get; set; }
         public DbSet<TaskItems> TaskItems { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }

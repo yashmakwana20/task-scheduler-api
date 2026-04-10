@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
+using TaskManagement.DTOs;
 using TaskManagement.Hubs;
 using TaskManagement.Models;
 using TaskManagement.Services;
@@ -14,11 +15,12 @@ namespace TaskManagement.Controllers
     public class CLTaskItemController : ControllerBase
     {
         public BLTaskItemHandler _objHandler;
+        public BLNotificationHandler _objNotificationHandler;
         private readonly int _userId;
         private readonly IHubContext<TaskNotificationHub> _hubContext;
         Response response = new Response();
 
-        public CLTaskItemController(BLTaskItemHandler objHandler, IHttpContextAccessor contextAccessor, IHubContext<TaskNotificationHub> hubContext)
+        public CLTaskItemController(BLTaskItemHandler objHandler, IHttpContextAccessor contextAccessor, IHubContext<TaskNotificationHub> hubContext, BLNotificationHandler objNotificationHandler)
         {
             _objHandler = objHandler;
             _hubContext = hubContext;
@@ -31,6 +33,7 @@ namespace TaskManagement.Controllers
                 _userId = Convert.ToInt32(userIdClaim);
             }
 
+            _objNotificationHandler = objNotificationHandler;
         }
 
         [Authorize(Roles = "Admin,User")]
@@ -70,8 +73,20 @@ namespace TaskManagement.Controllers
             _objHandler._userId = _userId;
             response = _objHandler.AssignTasks(objTaskAssign);
 
-            if (!response.IsError)
+            if (!response.IsError) {
+                var notification = await _objNotificationHandler.CreateAsync(new CreateNotificationDTO
+                {
+                    UserId = objTaskAssign.userId,
+                    Title = "New Task Assigned",
+                    Message = "A new task has been assigned to you.",
+                    Type = "TaskAssigned",
+                    RelatedTaskId = null
+                });
+
                 await NotifyTaskChanged("task-assigned", objTaskAssign.userId);
+
+                await _hubContext.Clients.Group($"user-{objTaskAssign.userId}").SendAsync("ReceiveNotification", notification);
+            }
 
             return Ok(response);
         }

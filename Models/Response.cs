@@ -14,5 +14,6 @@ namespace TaskManagement.Models
         public string? Message { get; set; }
 
         public int masterId { get; set; }
+        public int Count { get; set; }
     }
 }
