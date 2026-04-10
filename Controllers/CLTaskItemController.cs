@@ -74,11 +74,13 @@ namespace TaskManagement.Controllers
             response = _objHandler.AssignTasks(objTaskAssign);
 
             if (!response.IsError) {
+                string message = _objHandler.PrepareNotificationMessage();
                 var notification = await _objNotificationHandler.CreateAsync(new CreateNotificationDTO
                 {
                     UserId = objTaskAssign.userId,
                     Title = "New Task Assigned",
-                    Message = "A new task has been assigned to you.",
+                    //Message = "A new task has been assigned to you.",
+                    Message = message + " been assigned to you.",
                     Type = "TaskAssigned",
                     RelatedTaskId = null
                 });

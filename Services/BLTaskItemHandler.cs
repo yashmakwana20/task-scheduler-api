@@ -9,6 +9,7 @@ namespace TaskManagement.Services
     {
         private readonly DBTaskItemContext _dbContext;
         public int _userId;
+        DataTable dtTaskItem;
         TaskItems _objTask = new TaskItems();
         Response response = new Response();
 
@@ -53,10 +54,34 @@ namespace TaskManagement.Services
 
         public Response AssignTasks(TaskAssign objTaskAssign)
         {
-            response = _dbContext.AssignTasks(objTaskAssign);
-            response.Message = "Tasks Assigned Successfully";
+            dtTaskItem = new DataTable();
+            dtTaskItem = _dbContext.ValidateBeforeAssignTask(objTaskAssign.taskIds);
+
+            if (dtTaskItem.Rows.Count > 0)
+            {
+                response = _dbContext.AssignTasks(objTaskAssign);
+                response.Message = "Tasks Assigned Successfully";
+            }
+            else
+            {
+                response.IsError = true;
+                response.Message = "No Tasks Found.";
+            }
 
             return response;
+        }
+
+        public string PrepareNotificationMessage()
+        {
+            string message = String.Empty;
+
+            message = string.Join(", ", dtTaskItem.AsEnumerable()
+                                           .Select(row => row["Title"].ToString())
+                                           .Where(msg => !string.IsNullOrEmpty(msg)));
+
+            message = dtTaskItem.Rows.Count > 1 ? $"{message} have" : $"{message} has";
+
+            return message;
         }
 
         public Response DeleteTaskItem(int Id)

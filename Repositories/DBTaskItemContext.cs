@@ -78,5 +78,18 @@ namespace TaskManagement.Repositories
                 db.Delete<TaskItems>(TI => TI.Id == Id);
             }
         }
+
+        public DataTable ValidateBeforeAssignTask(List<int> taskIds)
+        {
+            DataTable dt = new DataTable();
+            List<TaskItems> lstTaskItem = new();
+
+            using (var db = _dbFactory.Open())
+            {
+                lstTaskItem = db.Select<TaskItems>(item => Sql.In(item.Id, taskIds));
+            }
+
+            return lstTaskItem.ToDataTable();
+        }
     }
 }
